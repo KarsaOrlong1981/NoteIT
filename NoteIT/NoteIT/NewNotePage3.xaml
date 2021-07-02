@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteIT.NewNotePage3"
+             NavigationPage.HasBackButton="False"
+             Title="Notiz Anlegen">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Liste"
+                 IconImageSource="Liste1.png"
+                 Order="Primary"
+                 Priority="0"
+                     Clicked="ToolbarItemListe_Clicked"    />
+       
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+      
+        <StackLayout>
+            <Editor x:Name="noteEntry"
+               Placeholder="Notiz eingeben" HeightRequest="300" />
+            <StackLayout HorizontalOptions="CenterAndExpand"  VerticalOptions="End">
+                <Label Text="Wähle die Hintergrundfarbe für die Notiz: " FontSize="20" TextColor="SteelBlue" HorizontalTextAlignment="Center" />
+                <StackLayout Orientation="Horizontal"   HorizontalOptions="CenterAndExpand"   VerticalOptions="CenterAndExpand"   RadioButtonGroup.GroupName="colors" >
+
+                    <RadioButton BackgroundColor="DarkGoldenrod"    Value="DarkGoldenrod"  x:Name="radio_DGrod" BorderColor="Black" BorderWidth="2" CornerRadius="100" IsChecked="true" WidthRequest="50" HeightRequest="40"/>
+                    <RadioButton  BackgroundColor="DarkRed"  Value="DarkRed"  x:Name="radio_DarkRed" BorderColor="Black" BorderWidth="2" CornerRadius="100" WidthRequest="50" HeightRequest="40" />
+
+
+                    <RadioButton BackgroundColor="Green" Value="Green" x:Name="radio_Green" BorderColor="Black" BorderWidth="2" CornerRadius="100" WidthRequest="50" HeightRequest="40"/>
+                    <RadioButton BackgroundColor="Violet"  Value="Violet" x:Name="radio_Violet" BorderColor="Black" BorderWidth="2" CornerRadius="100" WidthRequest="50" HeightRequest="40"/>
+                    <RadioButton BackgroundColor="CornflowerBlue"  Value="CornflowerBlue" x:Name="radio_CFB" BorderColor="Black" BorderWidth="2" CornerRadius="100" WidthRequest="50" HeightRequest="40" />
+                    <RadioButton BackgroundColor="Gray"    Value="Gray" x:Name="radio_Gray" BorderColor="Black" BorderWidth="2" CornerRadius="100" WidthRequest="50" HeightRequest="40"/>
+                </StackLayout>
+                <Button Margin="0,30,0,0" Text="Notiz hinzufügen"
+                    x:Name="btn_ADD" CornerRadius="100"
+                    BackgroundColor="Aqua" 
+                Clicked="btn_ADD_Clicked" VerticalOptions="EndAndExpand"    />
+            
+            </StackLayout>
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

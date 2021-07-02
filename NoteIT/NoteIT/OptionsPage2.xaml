@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="Black" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteIT.OptionsPage2"
+             NavigationPage.HasBackButton="False">
+    
+        <StackLayout >
+        <Button  Padding="17,50,0,0"  HorizontalOptions="StartAndExpand"  VerticalOptions="Start"  ImageSource="Hinzufuegen.png" Text="Neue Notiz Hinzufügen" TextColor="SteelBlue"      BackgroundColor="Black" FontSize="20"  x:Name="btn_Hinzufuegen" Clicked="btn_Hinzufuegen_Clicked" />
+        <Button HorizontalOptions="StartAndExpand"  VerticalOptions="StartAndExpand" ImageSource="Liste1.png" Text="Alle Notizen anzeigen" TextColor="SteelBlue"    BackgroundColor="Black"  FontSize="20" x:Name="btn_Bestand" Clicked="btn_Bestand_Clicked"  />
+        <StackLayout Padding="0,50,0,0" VerticalOptions="EndAndExpand" >
+            <Image  Source="Spices.jpg" Aspect="AspectFill"  />
+        </StackLayout>
+    </StackLayout>
+   
+</ContentPage>

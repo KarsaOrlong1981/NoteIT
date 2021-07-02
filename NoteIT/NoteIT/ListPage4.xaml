@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="Black" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteIT.ListPage4"
+             NavigationPage.HasBackButton="False" 
+             Title="Notizen Liste"
+             x:Name="this">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Weiter"
+                 IconImageSource="ADD.png"
+                 Order="Primary"
+                 Priority="0"
+                     Clicked="ToolbarItemADD_Clicked"   />
+        <ToolbarItem Text="Alles Löschen"
+                 
+                 Order="Secondary" 
+                 Priority="1"
+                     Clicked="ToolbarItemClearAll_Clicked"  />
+        <ToolbarItem Text="Sortieren nach Farbe"
+                
+                 Order="Secondary" 
+                 Priority="2"
+                     Clicked="ToolbarItemColor_Clicked"   />
+       
+       
+        <!-- Hier muessen noch die optionen Sortieren nach Farbe und nach Datum und nach Uhrzeit hin -->
+    </ContentPage.ToolbarItems>
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor"
+                                        Value="LightSkyBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+    <CollectionView  x:Name="collectionView"
+                        SelectionMode="Single"
+                     Margin="20"
+                     
+                     SelectionChanged="collectionView_SelectionChanged" 
+                    >
+        <CollectionView.ItemTemplate>
+            <DataTemplate >
+                <Grid Padding="10">
+                    <Frame Padding="20" HasShadow="True" CornerRadius="30" BackgroundColor="{Binding ColorBG}" BorderColor="DarkGray">
+                        <StackLayout >
+                            <Label Text="{Binding Date}" TextColor="LawnGreen" />
+                            <Image Source="Press.png" HorizontalOptions="End" HeightRequest="50"/>
+                           
+                            <ContentView >
+
+
+
+                                <Editor Text="{Binding Text}"  TextColor="White" AutoSize="TextChanges" />
+
+
+
+                            </ContentView>
+                        </StackLayout>
+
+
+
+                    </Frame>
+                </Grid>
+                
+               
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
