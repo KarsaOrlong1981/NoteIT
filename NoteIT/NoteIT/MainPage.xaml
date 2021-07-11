@@ -14,10 +14,17 @@
                  Order="Primary"
                  Priority="0"
                      Clicked="ToolbarItem_Clicked_1"   />
+
+        <ToolbarItem Text="DatePicker"
+                 
+                 Order="Secondary" 
+                 Priority="0"
+                     Clicked="ToolbarItem_Clicked_2"  />
+
     </ContentPage.ToolbarItems>
-    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
-        <Image Source="Notes.jpg" Aspect="Fill"    />
-    </StackLayout>
+    <AbsoluteLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" >
+        <Image Source="Notes.jpg" Aspect="AspectFit"   />
+    </AbsoluteLayout>
 </ContentPage>
 
 

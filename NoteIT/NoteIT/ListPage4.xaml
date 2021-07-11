@@ -54,13 +54,17 @@
                     <Frame Padding="20" HasShadow="True" CornerRadius="30" BackgroundColor="{Binding ColorBG}" BorderColor="DarkGray">
                         <StackLayout >
                             <Label Text="{Binding Date}" TextColor="LawnGreen" />
-                            <Image Source="Press.png" HorizontalOptions="End" HeightRequest="50"/>
+                            <StackLayout Orientation="Horizontal" >
+                                <Image Source="Text.png"  HorizontalOptions="StartAndExpand"  HeightRequest="50" />
+                                <Image Source="Press.png" HorizontalOptions="EndAndExpand" HeightRequest="50"/>
+                            </StackLayout>
+                           
                            
                             <ContentView >
 
 
 
-                                <Editor Text="{Binding Text}"  TextColor="White" AutoSize="TextChanges" />
+                                <Editor Text="{Binding Text}"  TextColor="White" AutoSize="TextChanges" Keyboard="Text" IsReadOnly="True" />
 
 
 

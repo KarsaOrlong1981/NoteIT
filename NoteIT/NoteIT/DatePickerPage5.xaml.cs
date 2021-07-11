@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace NoteIT
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NoteViewPage5 : ContentPage
+    public partial class DatePickerPage5 : ContentPage
     {
-        public NoteViewPage5()
+        public DatePickerPage5()
         {
             InitializeComponent();
         }

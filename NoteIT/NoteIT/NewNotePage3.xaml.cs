@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+
 namespace NoteIT
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -14,12 +15,12 @@ namespace NoteIT
     {
 
         string newColor;
-
-        public NewNotePage3(string color)
+        bool editNote;
+        public NewNotePage3(string color,bool getEdit)
         {
             InitializeComponent();
             newColor = color;
-
+            editNote = getEdit;
             if (newColor == "DarkRed")
                 radio_DarkRed.IsChecked = true;
             if (newColor == "Green")
@@ -33,10 +34,32 @@ namespace NoteIT
             if (newColor == "Gray")
                 radio_Gray.IsChecked = true;
 
+            if (editNote == true)
 
+                DisplayAlert("Achtung", "Wenn Sie die Seite verlassen ohne \"Notiz hinzufügen\" zu drücken, \n geht die Notiz für immer verloren", "Verstanden.");
 
         }
-        // Methode zur übergabe der gewählten Hintergrundfarben der Notizen
+        //********************* Methoden **************************
+        // Methode zur übergabe der gewählten Hintergrundfarben und dem Text
+        // der Notizen und übergibt die bestätigung das ein Eintrag vorliegt
+        async void CallPage4GetEntry(string color)
+        {
+            bool entRy = true;
+            ListPage4 callAndGet = new ListPage4(noteEntry.Text, color, entRy);
+
+            await Navigation.PushAsync(callAndGet);
+            Navigation.RemovePage(this);
+
+        }
+        //Methode die über ListPage4 aufgerufen wird um die aktuellen Daten der
+        //zu Bearbeitenden Notiz zu übergeben.
+        public void SendData(string txt, string clor)
+        {
+
+            noteEntry.Text = txt;
+            newColor = clor;
+        }
+        //************************* Ereignisse ***************************
         private void btn_ADD_Clicked(object sender, EventArgs e)
         {
             if(noteEntry.Text == null)
@@ -57,26 +80,13 @@ namespace NoteIT
                     newColor = "CornflowerBlue";
                 if (radio_Gray.IsChecked == true)
                     newColor = "Gray";
+
                 CallPage4GetEntry(newColor);
                 noteEntry.Text = "";
             }
            
         }
-        async void CallPage4GetEntry(string color)
-        {
-            bool entRy = true;
-            ListPage4 callAndGet = new ListPage4(noteEntry.Text,color,entRy);
-            
-            await Navigation.PushAsync(callAndGet);
-            Navigation.RemovePage(this);
-            
-        }
-
-        public void SendData(string txt, string clor)
-        {
-            noteEntry.Text = txt;
-            newColor = clor;
-        }
+       
 
         private void ToolbarItemListe_Clicked(object sender, EventArgs e)
         {

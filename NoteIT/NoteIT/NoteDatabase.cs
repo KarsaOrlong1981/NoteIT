@@ -12,6 +12,7 @@ namespace NoteIT
 {
   public  class NoteDatabase : ISQLiteDb 
     {
+		// Stellt Verbindung zur Datenbank her und richtet diese ein
 		public SQLiteAsyncConnection GetConnection()
 		{
 			var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);

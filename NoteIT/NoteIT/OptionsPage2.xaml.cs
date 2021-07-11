@@ -16,7 +16,25 @@ namespace NoteIT
         {
             InitializeComponent();
         }
+        //************** Methoden ***************
+        // Ruft Seite 3 (Neue Notiz hinzufügen) auf
+        async void CallPage3()
+        {
+            bool emptyBool = false;
+            string color = "Black";
+            NewNotePage3 call = new NewNotePage3(color, emptyBool);
+            await Navigation.PushAsync(call);
+        }
+        //Ruft seite 4 (Notiz Bestandsliste) auf
+        async void CallPage4()
+        {
+            string none = "";
+            bool entry = false;
+            ListPage4 call = new ListPage4(none, none, entry);
+            await Navigation.PushAsync(call);
 
+        }
+        //****************** Ereignisse *******************
         private void btn_Hinzufuegen_Clicked(object sender, EventArgs e)
         {
           
@@ -28,24 +46,6 @@ namespace NoteIT
             
             CallPage4();
         }
-        async void RemoveThisPage()
-        {
-            await Navigation.PopAsync();
-        }
-
-        async void CallPage3()
-        {
-            string color = "Black";
-            NewNotePage3 call = new NewNotePage3(color);
-            await Navigation.PushAsync(call);
-        }
-        async void CallPage4()
-        {
-            string none = "";
-            bool entry = false;
-            ListPage4 call = new ListPage4(none,none,entry);
-            await Navigation.PushAsync(call);
-
-        }
+      
     }
 }

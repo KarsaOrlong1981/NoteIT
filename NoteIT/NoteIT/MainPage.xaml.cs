@@ -19,7 +19,12 @@ namespace NoteIT
             OptionsPage2 call = new OptionsPage2();
             await Navigation.PushAsync(call);
         }
-       
+
+        async void CallPage5()
+        {
+            DatePickerPage5 call = new DatePickerPage5();
+            await Navigation.PushAsync(call);
+        }
 
         private void ToolbarItem_Clicked(object sender, EventArgs e)
         {
@@ -30,6 +35,11 @@ namespace NoteIT
         private void ToolbarItem_Clicked_1(object sender, EventArgs e)
         {
            // "Bild von Jess Bailey auf Pixabay"
+        }
+
+        private void ToolbarItem_Clicked_2(object sender, EventArgs e)
+        {
+            CallPage5();
         }
     }
 }
