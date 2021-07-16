@@ -67,10 +67,11 @@
                                 <Editor Text="{Binding Text}"  TextColor="White" AutoSize="TextChanges" Keyboard="Text" IsReadOnly="True" />
 
 
-
+                               
                             </ContentView>
+                            <Label Text="{Binding Memory}" TextColor="Yellow" FontSize="15"/>
                         </StackLayout>
-
+                       
 
 
                     </Frame>

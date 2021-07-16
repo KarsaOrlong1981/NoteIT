@@ -14,6 +14,7 @@
     <PackageReference Include="AscendantWare.Xamarin.Essentials" Version="1.0.25" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
@@ -25,22 +26,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="DatePickerPage5.xaml.cs">
-      <DependentUpon>DatePickerPage5.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="ListPage4.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="NewNotePage3.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="DatePickerPage5.xaml">
+    <EmbeddedResource Update="OptionsPage2.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="OptionsPage2.xaml">
+    <EmbeddedResource Update="TimePickerPage5.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

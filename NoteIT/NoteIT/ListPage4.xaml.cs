@@ -29,7 +29,9 @@ namespace NoteIT
         ObservableCollection<Note> saveNote;
         string text;
         string newColorBG;
-        int id;
+        DateTime nowTime;
+        DateTime compareTime;
+      
         bool isNoEntry;
         bool sortByColor;
         bool noteGetEdit;
@@ -39,7 +41,7 @@ namespace NoteIT
         {
             InitializeComponent();
 
-
+            
             sortByColor = false;
             //verhindern das bei jedem neu Initialisieren der Seite, immer wieder die gleiche Notiz erstellt wird
             isNoEntry = false;
@@ -51,6 +53,7 @@ namespace NoteIT
                 text = noteText;
                 newColorBG = colorBG;
                 date = DateTimeOffset.Now;
+                
             }
             else
             {
@@ -74,29 +77,68 @@ namespace NoteIT
            
                     
                 note = new ObservableCollection<Note>(_note);
+            // Wenn eine Erinnerung ausgelöst wurde soll der Hinweis auf die Erinnerung
+            // gelöscht werden
+            // dazu 2 Instanzen zu DateTime erstellen um einen vergleich durchführen zu können.
+            nowTime = new DateTime();
+            nowTime = DateTime.Now;
+            //Über eine For Schleife jede angelegte Notiz auf einen Erinnerungseintrag Überprüfen
+            for(int i = 0; i < note.Count;i++)
+            {
+                //Wenn der Eintrag Memory nicht leer ist, soll der Erinnerungseintrag gelöscht werden
+                //wenn das aktuelle Datum und die aktuelle Uhrzeit überschritten wurde
+                if (!(note[i].Memory == ""))
+                {
+                    //Memory eintrag splitten um die Datums und Uhrzeit daten heraus zu nehmen
+                    string[] array = note[i].Memory.Split(' ', ':', '.', '-');
+                    //4 = Jahr, 3 = Monat, 2 = Tag, 6 = Stunden, 7 = Minuten, 0 = Sekunden
+                    compareTime = new DateTime(Convert.ToInt32(array[4]), Convert.ToInt32(array[3]), Convert.ToInt32(array[2]), Convert.ToInt32(array[6]), Convert.ToInt32(array[7]), 0);
+                    //Hier werden die beiden DateTime Instanzen verglichen
+                    int result = DateTime.Compare(nowTime, compareTime);
+                   //Wenn das Datum überschritten wurde die alte Notiz überschreiben
+                   //und Memory Text löschen 
+                    if (result > 0)
+                    {
+                        note[i].Memory = "";
+                        OnAdd(note[i].Text, note[i].ColorBG, note[i].Memory);
+                    }
+                }
 
-        
+                
+               
+            }
 
             collectionView.ItemsSource = note;
             base.OnAppearing();
             //Wenn die Notiz leer ist oder nicht neu Angelegt wurde, keinen neuen Eintrag in der
             //Datenbank vornehmen
             if(isNoEntry == true)
-            OnAdd(text,newColorBG);
+            OnAdd(text,newColorBG,"");
             isNoEntry = false;
         }
         //************************************** Methoden ********************************************
         //Methode zum Eintrag der neuen Notiz in die DatenBank und zur Ausgabe
         //Die methode muss aus der Seite NewNotePage3 aufgerufen werden um die Eingetragenen Daten zu
         //übernehmen.
-        async void OnAdd(string txt,string clor)
+        public async void OnAdd(string txt,string clor,string mem)
         {
-
+            int countMem = 0;
+            foreach(Note elements in note)
+            {
+                
+                if (elements.Text == txt)
+                {
+                    DeleteNote(countMem);
+                }
+                   
+                countMem++;
+            }
             var noteAn = new Note
             {
                 Text = txt,
                 Date = Convert.ToString(date.ToString("F")),
-                ColorBG = clor
+                ColorBG = clor,
+                Memory = mem
             };
         
          
@@ -107,7 +149,7 @@ namespace NoteIT
             note.Add(noteAn);
 
     }
-
+       
         //Text to Speech 
         private async void TxtSpeech(string text)
         {
@@ -170,9 +212,14 @@ namespace NoteIT
                 Title = "Share!"
             }) ;
         }
-        
+        //Ruft die Erinnerungs Seite auf
+        async void CallPage5(string message,string colory)
+        {
+            TimePickerPage5 send = new TimePickerPage5(message,colory);
+            await Navigation.PushAsync(send);
+            Navigation.RemovePage(this);
+        }
 
-       
         //Wird aufgerufen wenn aus der Notizen bestandsliste heraus Neue Notiz hinzufügen gewählt wird
         async void BackTOADD()
         {
@@ -356,6 +403,13 @@ namespace NoteIT
             }
             if (action == "Erinnerung Aktivieren")
             {
+                
+                string msg = (e.CurrentSelection.FirstOrDefault() as Note)?.Text;
+                string color = (e.CurrentSelection.FirstOrDefault() as Note)?.ColorBG;
+                CallPage5(msg,color);
+               
+
+               
                
                 collectionView.SelectedItem = null;
             }

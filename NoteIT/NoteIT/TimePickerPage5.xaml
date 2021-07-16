@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage BackgroundColor="Black" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NoteIT.TimePickerPage5"
+             Title="Erinnerung hinzufügen">
+    <StackLayout>
+        <Label Padding="0,30,0,0" Text="Bitte wählen Sie eine Uhrzeit: " TextColor="SteelBlue" FontSize="20" HorizontalTextAlignment="Center" HorizontalOptions="CenterAndExpand" />
+        <TimePicker x:Name="TimePicker24" TextColor="Magenta" BackgroundColor="DarkGray"  HorizontalOptions="CenterAndExpand"  >
+        <TimePicker.Format>HH:mm</TimePicker.Format>
+        </TimePicker>
+        <Label Padding="0,30,0,0" Text="Bitte wählen Sie ein Datum: " TextColor="SteelBlue" FontSize="20" HorizontalTextAlignment="Center" />
+        <DatePicker x:Name="datePicker" TextColor="Magenta" BackgroundColor="DarkGray" HorizontalOptions="CenterAndExpand"  Format="D" ></DatePicker>
+        <Button Margin="40,0,40,0" x:Name="buttonAddNotification" VerticalOptions="CenterAndExpand" BackgroundColor="SteelBlue"  Text="Übernehmen" TextColor="White"  Clicked="buttonAddNotification_Clicked" />
+    </StackLayout>
+</ContentPage>

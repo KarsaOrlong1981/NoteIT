@@ -17,6 +17,6 @@ namespace NoteIT
       public string Text { get; set; }
       public string Date { get; set; }
       public string ColorBG { get;set; }
-        
+        public string Memory { get; set; }
     }
 }
